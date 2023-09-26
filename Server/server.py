@@ -4,7 +4,6 @@ import os
 import threading
 import sys
 import asyncio
-import sqlite3
 import mongo_op as mongo
 
 # small test
@@ -12,6 +11,7 @@ SERVER_HOST = "0.0.0.0"
 SERVER_PORT = 5100
 BUFFER_SIZE = 4096
 SEPARATOR = "<SEPARATOR>"
+mongo = mongo.Mongo()
 
 async def run_ipfs_command(command):
     process = await asyncio.create_subprocess_shell(
@@ -52,7 +52,6 @@ async def handle_client(client_socket):
     print(f"File uploaded to IPFS. CID: {cid}")
 
     # Update the MongoDB database with the CID and filename
-    mongo = mongo.Mongo()
     result = await mongo.insert(user=PublicKey, cid=cid)
 
     if result:
