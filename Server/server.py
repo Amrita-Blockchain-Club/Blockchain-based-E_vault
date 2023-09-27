@@ -5,7 +5,7 @@ import threading
 import sys
 import asyncio
 import mongo_op as mongo
-
+import Run_commands as run
 # small test
 SERVER_HOST = "0.0.0.0"
 SERVER_PORT = 5100
@@ -13,19 +13,24 @@ BUFFER_SIZE = 4096
 SEPARATOR = "<SEPARATOR>"
 mongo = mongo.Mongo()
 
-async def run_ipfs_command(command):
-    process = await asyncio.create_subprocess_shell(
-        command,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE
-    )
-    stdout, stderr = await process.communicate()
-    return stdout.decode().strip()
+# async def run_ipfs_command(command):
+#     process = await asyncio.create_subprocess_shell(
+#         command,
+#         stdout=asyncio.subprocess.PIPE,
+#         stderr=asyncio.subprocess.PIPE
+#     )
+#     stdout, stderr = await process.communicate()
+#     return stdout.decode().strip()
 
 async def upload_to_ipfs(file_path):
     command = f"ipfs add -Q {file_path}"
-    cid = await run_ipfs_command(command)
-    return cid
+    cid = await run.run_ipfs_command(command)
+
+    if cid is None:
+        print("An error occurred while uploading to IPFS.")
+        return None
+    else:
+        return cid
 
 async def handle_client(client_socket):
     received = client_socket.recv(BUFFER_SIZE).decode()

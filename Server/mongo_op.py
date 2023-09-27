@@ -42,3 +42,21 @@ class Mongo:
             return True
         except:
             return False
+        
+    async def read(self) -> List[dict] :
+        """
+        Reads all the documents from the "CIDs" collection.
+
+        Returns:
+            List[dict]: A list of dictionaries containing the user and CID(s).
+        """
+        try:
+            cursor = self.collection.find()
+            cid = []
+            for document in cursor:
+                cid.extend(document["cid"])
+            return cid
+        except Exception as e:
+            print(e)
+            return []
+
