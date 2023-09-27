@@ -1,12 +1,13 @@
 import socket
 import tqdm
+import subprocess
 import os
 import threading
 import sys
 import asyncio
 import mongo_op as mongo
 import Run_commands as run
-# small test
+
 SERVER_HOST = "0.0.0.0"
 SERVER_PORT = 5100
 BUFFER_SIZE = 4096
@@ -22,12 +23,39 @@ mongo = mongo.Mongo()
 #     stdout, stderr = await process.communicate()
 #     return stdout.decode().strip()
 
+def get_only_cid(file_path: str) -> str:
+    """
+    Get the CID of a file without uploading it to IPFS.
+
+    Args:
+        file_path: A string representing the path to the file.
+
+    Returns:
+        A string representing the CID of the file.
+    """
+
+    command = f"ipfs add --only-hash {file_path}"
+    output = subprocess.check_output(command.split())
+    cid = output.decode().strip()
+
+    return cid
+
 async def upload_to_ipfs(file_path):
+    """
+    Upload File to the IPFS.
+
+    Args:
+        file_path: A string representing the path to the file.
+
+    Returns:
+        A string representing the CID of the file.
+    """
+        
     command = f"ipfs add -Q {file_path}"
     cid = await run.run_ipfs_command(command)
 
     if cid is None:
-        print("An error occurred while uploading to IPFS.")
+        print("[-] An error occurred while uploading to IPFS.")
         return None
     else:
         return cid
@@ -53,20 +81,33 @@ async def handle_client(client_socket):
 
     client_socket.close()
 
-    cid = await upload_to_ipfs(filepath)
-    print(f"File uploaded to IPFS. CID: {cid}")
+    # Check the mongodb for the existance of the file
+    cid = await get_only_cid(filepath)
 
-    # Update the MongoDB database with the CID and filename
-    result = await mongo.insert(user=PublicKey, cid=cid)
+    status = await mongo.isFileExist(user=PublicKey, cid=cid)
 
-    if result:
-        print("MongoDB database updated successfully.")
+    if not status:
+        cid = await upload_to_ipfs(filepath)
+        print(f"[+] File uploaded to IPFS. CID: {cid}")
+
+        # update mongodb
+        result = await mongo.insert(user=PublicKey, cid=cid)
+
+        if result:
+            print("[+] MongoDB database updated successfully.")
+        else:
+            print("[-] An error occurred while updating the MongoDB database.")
+
+        path = os.path.join(directory, filename)
+        os.remove(path)
+        print(f"[+] File deleted from server. Filename: {filename}")
     else:
-        print("An error occurred while updating the MongoDB database.")
+        print(f"[/] File already exists. CID: {cid}")
 
-    path = os.path.join(directory, filename)
-    os.remove(path)
-    print(f"File deleted from server. Filename: {filename}")
+    # Send response to the client
+    response = f"{cid}{SEPARATOR}{status}".encode()
+    client_socket.send(response)
+
 
 async def start_server():
     s = socket.socket()

@@ -3,7 +3,7 @@ import tqdm
 import os
 import sys
 
-def sendfile(public_key: str, filepath: str) -> bool:
+def sendfile(public_key: str, filepath: str) -> (bool, tuple):
     """
     Send a file over a network using a client-server model.
 
@@ -46,15 +46,24 @@ def sendfile(public_key: str, filepath: str) -> bool:
                     s.sendall(bytes_read)
                     progress.update(len(bytes_read))
 
-            return True
+            # response from the server
+            response = s.recv(BUFFER_SIZE).decode()
+            cid, status = response.split(SEPARATOR)
+            response = (cid, status)
+
+            return True, response
     except:
-        return False
+        return False, None
 
 
 if __name__ == "__main__":
-    status = sendfile(filepath="/home/neeraj/Documents/NoCode+CodeBase_Tuning.pdf", public_key="0x59a0Ee7fDc4Eb1A941ff8c3c6bcdF69446398D38")
+    status, response = sendfile(filepath="/home/neeraj/Documents/NoCode+CodeBase_Tuning.pdf", public_key="0x59a0Ee7fDc4Eb1A941ff8c3c6bcdF69446398D38")
     
     if status:
         print("[+] File sent successfully.")
+        if response[1] == "True":
+            print("[+] File already exists. CID: {response[0]}")
+        else:
+            print(f"[+] File Uploaded. CID: {response[0]}")
     else:
         print("[-] An error occurred while sending the file.")
