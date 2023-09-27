@@ -17,7 +17,7 @@ async def heart_beat(status, cid):
 
 
 async def Pinning_service(CID) -> bool:
-    for cid in range(CID):
+    for cid in CID:
         command = f"ipfs pin add {cid}"
         result = await run.run_ipfs_command(command)
         if result is None:
