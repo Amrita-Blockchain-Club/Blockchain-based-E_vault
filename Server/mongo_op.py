@@ -59,4 +59,29 @@ class Mongo:
         except Exception as e:
             print(e)
             return []
+    
+    async def isFileExist(self, user: str, cid: [str, List[str]]) -> bool:
+        """
+        Checks if the provided CID(s) exist in the database.
+
+        Args:
+            user (str): The user to check.
+            cid (str or List[str]): The CID(s) to check.
+
+        Returns:
+            bool: True if the CID(s) exist, False otherwise.
+        """
+        try:
+            query = {"user": user}
+            result = self.collection.find_one(query)
+            if result is None:
+                return False
+            else:
+                cids = result["cid"]
+                if isinstance(cid, str):
+                    return cid in cids
+                else:
+                    return all([c in cids for c in cid])
+        except:
+            return False
 
