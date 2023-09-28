@@ -23,7 +23,7 @@ mongo = mongo.Mongo()
 #     stdout, stderr = await process.communicate()
 #     return stdout.decode().strip()
 
-def get_only_cid(file_path: str) -> str:
+async def get_only_cid(file_path: str) -> str:
     """
     Get the CID of a file without uploading it to IPFS.
 
@@ -34,11 +34,15 @@ def get_only_cid(file_path: str) -> str:
         A string representing the CID of the file.
     """
 
-    command = f"ipfs add --only-hash {file_path}"
-    output = subprocess.check_output(command.split())
-    cid = output.decode().strip()
+    # command = f"ipfs add --only-hash {file_path}"
+    command = f"docker exec -it ipfs-node ipfs add --only-hash {file_path}"
+    cid = await run.run_ipfs_command(command)
 
-    return cid
+    if cid is None:
+        print("[-] An error occurred while uploading to IPFS.")
+        return None
+    else:
+        return cid
 
 async def upload_to_ipfs(file_path):
     """
@@ -51,7 +55,8 @@ async def upload_to_ipfs(file_path):
         A string representing the CID of the file.
     """
         
-    command = f"ipfs add -Q {file_path}"
+    # command = f"ipfs add -Q {file_path}"
+    command = f"docker exec -it ipfs-node ipfs add -Q {file_path}"
     cid = await run.run_ipfs_command(command)
 
     if cid is None:
@@ -79,8 +84,6 @@ async def handle_client(client_socket):
             f.write(bytes_read)
             progress.update(len(bytes_read))
 
-    client_socket.close()
-
     # Check the mongodb for the existance of the file
     cid = await get_only_cid(filepath)
 
@@ -105,8 +108,12 @@ async def handle_client(client_socket):
         print(f"[/] File already exists. CID: {cid}")
 
     # Send response to the client
-    response = f"{cid}{SEPARATOR}{status}".encode()
-    client_socket.send(response)
+    try:
+        response = f"{cid}{SEPARATOR}{status}".encode()
+        client_socket.send(response)
+    except:
+        print("[-] An error occurred while sending the response to the client.")
+    client_socket.close()
 
 
 async def start_server():
@@ -122,6 +129,7 @@ async def start_server():
         asyncio.create_task(handle_client(client_socket))
 
     s.close()
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(start_server())
+    
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(start_server())

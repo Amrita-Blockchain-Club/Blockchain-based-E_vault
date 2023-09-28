@@ -1,0 +1,5 @@
+asyncio
+pymongo
+python-dotenv
+time
+tqdm

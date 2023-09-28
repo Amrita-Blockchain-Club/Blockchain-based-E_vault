@@ -24,7 +24,7 @@ def sendfile(public_key: str, filepath: str) -> (bool, tuple):
 
     SEPARATOR = "<SEPARATOR>"
     BUFFER_SIZE = 4096
-    host = "192.168.101.50"
+    host = "192.168.249.50"
     port = 5100
 
     filesize = os.path.getsize(filepath)
