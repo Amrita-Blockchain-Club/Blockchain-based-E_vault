@@ -46,13 +46,15 @@ def sendfile(public_key: str, filepath: str) -> (bool, tuple):
                     s.sendall(bytes_read)
                     progress.update(len(bytes_read))
 
-            # response from the server
-            response = s.recv(BUFFER_SIZE).decode()
-            cid, status = response.split(SEPARATOR)
-            response = (cid, status)
-
-            return True, response
-    except:
+            # responseo from the server
+        response = s.recv(BUFFER_SIZE).decode()
+        cid, status = response.split(SEPARATOR)
+        response = (cid, status)
+        print(response)
+        return True, response
+            
+    except Exception as e:
+        print(f"[-] An error occurred while sending the file: {e}")
         return False, None
 
 
@@ -67,3 +69,8 @@ if __name__ == "__main__":
             print(f"[+] File Uploaded. CID: {response[0]}")
     else:
         print("[-] An error occurred while sending the file.")
+
+
+
+
+

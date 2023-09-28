@@ -14,15 +14,6 @@ BUFFER_SIZE = 4096
 SEPARATOR = "<SEPARATOR>"
 mongo = mongo.Mongo()
 
-# async def run_ipfs_command(command):
-#     process = await asyncio.create_subprocess_shell(
-#         command,
-#         stdout=asyncio.subprocess.PIPE,
-#         stderr=asyncio.subprocess.PIPE
-#     )
-#     stdout, stderr = await process.communicate()
-#     return stdout.decode().strip()
-
 async def get_only_cid(file_path: str) -> str:
     """
     Get the CID of a file without uploading it to IPFS.
@@ -34,15 +25,14 @@ async def get_only_cid(file_path: str) -> str:
         A string representing the CID of the file.
     """
 
-    # command = f"ipfs add --only-hash {file_path}"
-    command = f"docker exec -it ipfs-node ipfs add --only-hash {file_path}"
-    cid = await run.run_ipfs_command(command)
+    command = f"ipfs add --only-hash {file_path}"
+    cid =  await run.run_ipfs_command(command)
 
     if cid is None:
         print("[-] An error occurred while uploading to IPFS.")
         return None
     else:
-        return cid
+        return cid.split(" ")[1]
 
 async def upload_to_ipfs(file_path):
     """
@@ -55,8 +45,7 @@ async def upload_to_ipfs(file_path):
         A string representing the CID of the file.
     """
         
-    # command = f"ipfs add -Q {file_path}"
-    command = f"docker exec -it ipfs-node ipfs add -Q {file_path}"
+    command = f"ipfs add -Q {file_path}"
     cid = await run.run_ipfs_command(command)
 
     if cid is None:
@@ -89,7 +78,10 @@ async def handle_client(client_socket):
 
     status = await mongo.isFileExist(user=PublicKey, cid=cid)
 
-    if not status:
+    if status:
+        print(f"[/] File already exists. CID: {cid}")
+       
+    else:
         cid = await upload_to_ipfs(filepath)
         print(f"[+] File uploaded to IPFS. CID: {cid}")
 
@@ -104,13 +96,12 @@ async def handle_client(client_socket):
         path = os.path.join(directory, filename)
         os.remove(path)
         print(f"[+] File deleted from server. Filename: {filename}")
-    else:
-        print(f"[/] File already exists. CID: {cid}")
 
     # Send response to the client
     try:
         response = f"{cid}{SEPARATOR}{status}".encode()
         client_socket.send(response)
+        print("[+] Response sent to the client.")
     except:
         print("[-] An error occurred while sending the response to the client.")
     client_socket.close()
@@ -129,7 +120,7 @@ async def start_server():
         asyncio.create_task(handle_client(client_socket))
 
     s.close()
-    
+
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(start_server())
