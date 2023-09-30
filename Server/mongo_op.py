@@ -40,7 +40,8 @@ class Mongo:
                 self.collection.update_one(query, {"$set": {"cid": cids}})
             
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False
         
     async def read(self) -> List[dict] :

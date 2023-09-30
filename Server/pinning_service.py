@@ -27,19 +27,18 @@ async def Pinning_service(CID) -> bool:
             await heart_beat(True, cid)
     return True
 
-
 async def main():
-    documents = await Mongo.read()
-    
-    status = await Pinning_service(documents)
+    while True:
+        documents = await Mongo.read()
+        
+        status = await Pinning_service(documents)
 
-    if status:
-        print("[+] All files pinned successfully.")
-        time.sleep(8)
-    else:
-        print("[-] An error occurred while pinning the files.")
-        time.sleep(8)
+        if status:
+            print("[+] All files pinned successfully.")
+        else:
+            print("[-] An error occurred while pinning the files.")
+
+        time.sleep(2)
 
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+asyncio.run(main())

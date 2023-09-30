@@ -6,53 +6,11 @@ import threading
 import sys
 import asyncio
 import mongo_op as mongo
-import Run_commands as run
+from Run_commands import get_only_cid, upload_to_ipfs
+from serverdetails import SERVER_HOST, SERVER_PORT, BUFFER_SIZE, SEPARATOR
 
-SERVER_HOST = "0.0.0.0"
-SERVER_PORT = 5100
-BUFFER_SIZE = 4096
-SEPARATOR = "<SEPARATOR>"
 mongo = mongo.Mongo()
 
-async def get_only_cid(file_path: str) -> str:
-    """
-    Get the CID of a file without uploading it to IPFS.
-
-    Args:
-        file_path: A string representing the path to the file.
-
-    Returns:
-        A string representing the CID of the file.
-    """
-
-    command = f"ipfs add --only-hash {file_path}"
-    cid =  await run.run_ipfs_command(command)
-
-    if cid is None:
-        print("[-] An error occurred while uploading to IPFS.")
-        return None
-    else:
-        return cid.split(" ")[1]
-
-async def upload_to_ipfs(file_path):
-    """
-    Upload File to the IPFS.
-
-    Args:
-        file_path: A string representing the path to the file.
-
-    Returns:
-        A string representing the CID of the file.
-    """
-        
-    command = f"ipfs add -Q {file_path}"
-    cid = await run.run_ipfs_command(command)
-
-    if cid is None:
-        print("[-] An error occurred while uploading to IPFS.")
-        return None
-    else:
-        return cid
 
 async def handle_client(client_socket):
     received = client_socket.recv(BUFFER_SIZE).decode()
