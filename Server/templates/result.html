@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Result</title>
@@ -8,5 +8,35 @@
     <p>{{ message }}</p>
     <p>Status code: {{ status_code }}</p>
     <p>CID: {{ cid }}</p>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download File</title>
+</head>
+<body>
+    <h1>Upload your File</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+        <label for="public_key">Public Key:</label>
+        <input type="text" name="public_key" id="public_key"><br>
+        <label for="file">File:</label>
+        <input type="file" name="file" id="file"><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/');
+            xhr.onload = () => {
+                const response = xhr.responseText;
+                console.log(response);
+            };
+            xhr.send(new FormData(form));
+        });
+    </script>
 </body>
 </html>

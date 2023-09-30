@@ -24,7 +24,7 @@ def sendfile(public_key: str, filepath: str) -> (bool, tuple):
 
     SEPARATOR = "<SEPARATOR>"
     BUFFER_SIZE = 4096
-    host = "192.168.249.50"
+    host = "127.0.0.1"
     port = 5100
 
     filesize = os.path.getsize(filepath)
@@ -50,6 +50,7 @@ def sendfile(public_key: str, filepath: str) -> (bool, tuple):
         response = s.recv(BUFFER_SIZE).decode()
         cid, status = response.split(SEPARATOR)
         response = (cid, status)
+        s.close()
         print(response)
         return True, response
             
