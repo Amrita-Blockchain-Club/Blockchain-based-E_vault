@@ -72,11 +72,12 @@ async def handle_client(client_socket):
                 break
             f.write(bytes_read)
             progress.update(len(bytes_read))
+    f.close()
 
     # Check the mongodb for the existance of the file
     cid = await get_only_cid(filepath)
 
-    status = await mongo.isFileExist(user=PublicKey, cid=cid)
+    status = mongo.isFileExist(user=PublicKey, cid=cid)
 
     if status:
         print(f"[/] File already exists. CID: {cid}")
@@ -99,9 +100,9 @@ async def handle_client(client_socket):
 
     # Send response to the client
     try:
-        response = f"{cid}{SEPARATOR}{status}".encode()
-        client_socket.send(response)
-        print("[+] Response sent to the client.")
+        response = f"{cid}{SEPARATOR}{status}"
+        client_socket.sendall(response.encode())
+        print("[+] Response sent to the client.",{response})
     except:
         print("[-] An error occurred while sending the response to the client.")
     client_socket.close()
