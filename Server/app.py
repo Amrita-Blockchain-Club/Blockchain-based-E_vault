@@ -46,7 +46,7 @@ async def download_file():
 async def StartOperation(filepath, public_key) -> tuple:
         
         cid = await get_only_cid(filepath)
-        status = mongo.isFileExist(user=public_key, cid=cid)
+        status = await mongo.isFileExist(user=public_key, cid=cid)
 
         if status:
             print(f"[/] File already exists. CID: {cid}")

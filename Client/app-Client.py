@@ -1,21 +1,5 @@
 import requests
-from extract_details import get_response
 import re
-
-
-url = '__API_ENDPOINT__'
-public_key = 'PUBLIC_KEY'
-filename = 'FILE_ADDRESS'
-
-with open(filename, 'rb') as file:
-    response = requests.post(url, data={'public_key': public_key}, files={'file': file})
-
-if response.status_code == 200:
-    get_response(response=response.text)
-
-else:
-    print('Error:', response.status_code)
-
 
 
 def get_response(response):
@@ -30,3 +14,21 @@ def get_response(response):
     print(f'Message: {message}')
     print(f'Status code: {status_code}')
     print(f'CID: {cid}')
+
+
+def main():
+    url = 'http://localhost:5100'
+    public_key = 'Cc1UPXsgNHP5wrHGsqVUM6xxAPx2C8rXDybK9DzqNPQn'
+    filename = '/home/neeraj/Downloads/GOFile_2.go'
+
+    with open(filename, 'rb') as file:
+        response = requests.post(url, data={'public_key': public_key}, files={'file': file})
+
+    if response.status_code == 200:
+        get_response(response=response.text)
+
+    else:
+        print('Error:', response.status_code)
+
+if __name__ == '__main__':
+    main()

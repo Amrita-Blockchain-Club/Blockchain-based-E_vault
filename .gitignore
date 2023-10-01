@@ -1,2 +1,4 @@
 myenv/
 Server/.env
+Server/__pycache__/
+Client/__pycache__/

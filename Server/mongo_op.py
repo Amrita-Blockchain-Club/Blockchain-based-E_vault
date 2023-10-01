@@ -61,7 +61,7 @@ class Mongo:
             print(e)
             return []
     
-    def isFileExist(self, user: str, cid: [str, List[str]]) -> bool:
+    async def isFileExist(self, user: str, cid: [str, List[str]]) -> bool:
         """
         Checks if the provided CID(s) exist in the database.
 
