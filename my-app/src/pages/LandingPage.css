@@ -1,0 +1,309 @@
+*{
+  overflow-x: hidden;
+}
+
+.navbar {
+  width: 99%;
+  height: 80px;
+  margin-top: 3px;
+  border-radius: #000;
+  background: transparent;
+  position: fixed;
+  background: rgb(246, 249, 252, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 25px;
+  z-index: 1;
+  border: 0.1px solid rgba(228, 225, 225, 0.18);
+  overflow: hidden;
+}
+
+.icon {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: 16%;
+  left: 1.5%;
+}
+
+.icon:hover {
+  width: 60px;
+  top: 14%;
+  left: 1.4%;
+  height: 60px;
+  transition-duration: 0.2s;
+}
+
+.heading {
+  width: 170px;
+  color: #000;
+  text-align: center;
+  font-family: Rajdhani;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.7;
+  position: absolute;
+  top: 23%;
+  left: 5%;
+}
+
+.about {
+  color: #000;
+  text-align: center;
+  font-family: Miriam Libre;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.56;
+}
+
+.aboutbox {
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  top: 32.3%;
+  left: 17%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.aboutbox:hover .about {
+  color: #06f;
+  font-size: 25.1px;
+  opacity: 1;
+  top: 15%;
+  transition: 0.2s;
+}
+
+.colourmode {
+  position: absolute;
+  border-radius: 11px;
+  background: rgb(45, 129, 255);
+  top: 33%;
+  left: 25.5%;
+  width: 30px;
+  height: 30px;
+}
+
+.colourmode:hover {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  top: 30%;
+  left: 25.3%;
+  transition: 0.2s;
+  box-shadow: 0px 0px 10px 0px #06f;
+}
+
+.moon {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  transform: translate(20%, 20%);
+}
+
+.colourmode:hover .moon {
+  transform: translate(22%, 22%);
+  width: 25px;
+  height: 25px;
+  transition-duration: 0.2s;
+}
+
+.connectbutton {
+  width: 170px;
+  height: 40px;
+  position: absolute;
+  top: 28%;
+  right: 1.5%;
+  cursor: pointer;
+  background-color: rgb(40, 123, 247);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.Connect {
+  color: white;
+  font-family: Miriam Libre;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  opacity: 0.8;
+  position: absolute;
+  top: 11%;
+  left: 33%;
+}
+
+.metamask {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 28%;
+  right: 8.5%;
+  cursor: pointer;
+}
+
+.connectbutton:hover{
+  z-index: -1;
+  box-shadow: 0px 0px 10px 0px #06f;
+  font-size: 25.5px;
+  transition-duration: 0.1s;
+}
+
+.connectbutton:hover .Connect {
+  cursor: pointer;
+  color: white;
+  transition-duration: 0.2s;
+  font-size: 25.5px;
+}
+
+.main {
+  background-color: #a3c3e4;
+  overflow-x: hidden;
+}
+
+.welcomecontent {
+  width: 521px;
+  height: 214px;
+  color: #000;
+  font-family: Armata;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  overflow: hidden;
+}
+
+.blockdiagram {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+}
+
+.learnmore {
+  position: absolute;
+  width: 220px;
+  height: 50px;
+  top: 77%;
+  left: 5.3%;
+  flex-shrink: 0;
+  color: #fff;
+  font-family: Armata;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  border-radius: 10px;
+  background: #06f;
+  border: none;
+}
+
+.learnmore:hover {
+  cursor: pointer;
+  font-size: 20.5px;
+  transition-duration: 10ms;
+  box-shadow: 0px 0px 10px 0px #06f;
+  font-weight: 500;
+}
+
+.subheading {
+  color: #0e6ba8;
+  text-align: center;
+  font-family: Armata;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  top: 120%;
+  left: 40%;
+}
+
+.serviceweprovide {
+  color: #030303;
+  font-family: Armata;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: transparent;
+}
+
+.serviceno1 {
+  color: #118bda;
+  position: absolute;
+  top: 145%;
+  font-size: 27px;
+  font-family: JetBrains Mono;
+  left: 5%;
+}
+
+.serviceno1content {
+  color: #030303;
+  position: absolute;
+  top: 149.5%;
+  font-size: 18px;
+  font-family: Armata;
+  left: 5%;
+  line-height: 250%;
+}
+
+.serviceno2 {
+  color: #118bda;
+  position: absolute;
+  top: 160%;
+  font-size: 27px;
+  font-family: JetBrains Mono;
+  left: 5%;
+}
+
+.serviceno2content {
+  color: #030303;
+  position: absolute;
+  top: 164.5%;
+  font-size: 18px;
+  font-family: Armata;
+  left: 5%;
+  line-height: 250%;
+}
+
+.serviceno3 {
+  color: #118bda;
+  position: absolute;
+  top: 175%;
+  font-size: 27px;
+  font-family: JetBrains Mono;
+  left: 5%;
+}
+
+.serviceno3content {
+  color: #030303;
+  position: absolute;
+  top: 179.5%;
+  font-size: 18px;
+  font-family: Armata;
+  left: 5%;
+  line-height: 250%;
+}
+
+.data {
+  width: 937px;
+  height: 708px;
+  border-radius: 25px;
+  position: absolute;
+  top: 200%;
+  transform: translate(49%, 0%);
+}
+
+.footer {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  top: 190%;
+}
