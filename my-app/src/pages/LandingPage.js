@@ -1,10 +1,9 @@
 import React from "react";
-import icon from "./assets/Screenshot_2023-09-20_201047-removebg-preview.png";
+import icon from "../assets/Screenshot_2023-09-20_201047-removebg-preview.png";
 import "./LandingPage.css";
-import metamask from "./assets/Untitled_design__9__1-removebg-preview.png";
-import blockdiagram from "./assets/original-4cfe1ccf4ff167f1e18b27afe33c1f5d 1.png";
-import moonpic from "./assets/moon (1) 2.png";
-import { Link } from "react-router-dom";
+import metamask from "../assets/Untitled_design__9__1-removebg-preview.png";
+import blockdiagram from "../assets/original-4cfe1ccf4ff167f1e18b27afe33c1f5d 1.png";
+import moonpic from "../assets/moon (1) 2.png";
 
 
 const LandingPage = () => {
@@ -27,9 +26,6 @@ const LandingPage = () => {
         </div>
       </div>
       <div className="main">
-        <li>
-        <Link to="/">Home</Link>
-        </li>
         <div className="welcomecontent">
           Easy and Secure access to your Document
         </div>
