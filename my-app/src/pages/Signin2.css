@@ -1,0 +1,157 @@
+*{
+    background-color: #F6F9FC;
+  }
+  
+  .colourmode {
+    position: absolute;
+    border-radius: 11px;
+    background: rgb(45, 129, 255);
+    top: 11%;
+    left: 63%;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .colourmode:hover {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    top: 10.5%;
+    left: 63%;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 0px #06f;
+  }
+  
+  .moon {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    transform: translate(20%, 20%);
+  }
+  
+  .colourmode:hover .moon {
+    transform: translate(22%, 22%);
+    width: 25px;
+    height: 25px;
+    transition-duration: 0.2s;
+  }
+  
+  
+  .signin{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 11px;
+    background: rgb(255, 255, 255);
+    width: 450px;
+    height: 600px;
+  box-shadow: 0px 1px 4px 0px rgba(19, 85, 133, 0.25);
+  }
+  
+  .heading_signin{
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Rajdhani', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    background-color: transparent;
+  }
+  
+  .logo{
+    position: absolute;
+    top: 9%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+  }
+  
+  .subheading_signin{
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Rajdhani', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: transparent;
+    opacity: 0.7;
+  }
+  
+  .input_signin{
+    background-color: transparent !important;
+  }
+  
+  .password_signin2{
+    padding: 0px 0px 0px 10px;
+    width: 300px;
+    height: 33px;
+    position: absolute;
+    top: 60%;
+    left: 16%;
+    border-radius: 5px;
+    background-color: #EEF5FC;
+    border: 1px solid #bbbaba ;
+    font-family: Miriam Libre;
+  }
+  
+  .password_signin2:focus{
+    top: 60%;
+    left: 16%;
+    border: 1px solid rgb(0, 0, 0);
+    outline:#007bff;
+    box-shadow: 0px 0px 10px 0px rgb(233, 242, 255);
+    color: black;
+    transition: 0.2s;
+  }
+  
+  .confirm_signin2{
+    padding: 0px 0px 0px 10px;
+    width: 300px;
+    height: 33px;
+    position: absolute;
+    top: 68%;
+    left: 16%;
+    border-radius: 5px;
+    background-color: #EEF5FC;
+    border: 1px solid #bbbaba;
+    font-family: Miriam Libre;
+  }
+  
+  .confirm_signin2:focus{
+    top: 68%;
+    left: 16%;
+    border: 1px solid rgb(0, 0, 0);
+    outline:#000000;
+    box-shadow: 0px 0px 10px 0px rgb(233, 242, 255);
+    color: black;
+    transition: 0.2s;
+  }
+  
+  .submit_button{
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 79%;
+    left: 63%;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    background-color: #06f;
+    border: 1px solid #2D81FF;
+    font-family: Rajdhani;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .submit_button:hover{
+    box-shadow: 0px 0px 10px 0px #2D81FF;
+    transition: 0.2s;
+  }
+  

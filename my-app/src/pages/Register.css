@@ -1,5 +1,5 @@
-*{
-  background-color: #F6F9FC;
+* {
+  background-color: #f6f9fc;
 }
 
 .colourmode {
@@ -36,8 +36,7 @@
   transition-duration: 0.2s;
 }
 
-
-.signin{
+.register {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,22 +45,22 @@
   background: rgb(255, 255, 255);
   width: 450px;
   height: 600px;
-box-shadow: 0px 1px 4px 0px rgba(19, 85, 133, 0.25);
+  box-shadow: 0px 1px 4px 0px rgba(19, 85, 133, 0.25);
 }
 
-.heading_signin{
+.heading_register {
   position: absolute;
   top: 18%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
   background-color: transparent;
 }
 
-.logo{
+.logo {
   position: absolute;
   top: 9%;
   left: 50%;
@@ -71,12 +70,12 @@ box-shadow: 0px 1px 4px 0px rgba(19, 85, 133, 0.25);
   background-color: transparent;
 }
 
-.subheading_signin{
+.subheading_register {
   position: absolute;
   top: 24%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -84,73 +83,130 @@ box-shadow: 0px 1px 4px 0px rgba(19, 85, 133, 0.25);
   opacity: 0.7;
 }
 
-.input_signin{
+.input_register {
   background-color: transparent !important;
 }
 
-.username_signin{
+.password_register {
   padding: 0px 0px 0px 10px;
-  width: 270px;
-  height: 30px;
+  width: 300px;
+  height: 33px;
   position: absolute;
-  top: 60%;
-  left: 19%;
-  border-radius: 5px;
-  background-color: #EEF5FC;
-  border: 1px solid #bbbaba ;
-  font-family: Miriam Libre;
-}
-
-.username_signin:focus{
-  top: 60%;
-  left: 19%;
-  border: 1px solid rgb(0, 0, 0);
-  outline:#007bff;
-  box-shadow: 0px 0px 10px 0px rgb(233, 242, 255);
-  color: black;
-  transition: 0.2s;
-}
-
-.email_signin{
-  padding: 0px 0px 0px 10px;
-  width: 270px;
-  height: 30px;
-  position: absolute;
-  top: 68%;
-  left: 19%;
+  top: 59%;
+  left: 16%;
   border-radius: 5px;
   background-color: #EEF5FC;
   border: 1px solid #bbbaba;
   font-family: Miriam Libre;
 }
 
-.email_signin:focus{
-  top: 68%;
-  left: 19%;
+.password_register:focus {
+  top: 59%;
+  left: 16%;
   border: 1px solid rgb(0, 0, 0);
-  outline:#000000;
+  outline: #007bff;
   box-shadow: 0px 0px 10px 0px rgb(233, 242, 255);
   color: black;
   transition: 0.2s;
 }
 
-.submit_button{
+.email_register {
+  padding: 0px 0px 0px 10px;
+  width: 300px;
+  height: 33px;
+  position: absolute;
+  top: 50%;
+  left: 16%;
+  border-radius: 5px;
+  background-color: #EEF5FC;
+  border: 1px solid #bbbaba;
+  font-family: Miriam Libre;
+}
+
+.email_register:focus {
+  top: 50%;
+  left: 16%;
+  border: 1px solid rgb(0, 0, 0);
+  outline: #000000;
+  box-shadow: 0px 0px 10px 0px rgb(233, 242, 255);
+  color: black;
+  transition: 0.2s;
+}
+
+.submit_button_register {
   width: 100px;
   height: 30px;
   position: absolute;
-  top: 79%;
-  left: 60%;
+  top: 69%;
+  left: 63%;
   text-align: center;
   line-height: 30px;
   border-radius: 5px;
   background-color: #06f;
-  border: 1px solid #2D81FF;
+  border: 1px solid #2d81ff;
   font-family: Rajdhani;
   color: white;
   cursor: pointer;
 }
 
-.submit_button:hover{
-  box-shadow: 0px 0px 10px 0px #2D81FF;
+.submit_button_register:hover {
+  box-shadow: 0px 0px 10px 0px #2d81ff;
+  transition: 0.2s;
+}
+
+.create_account {
+  position: absolute;
+  top: 71.6%;
+  left: 26.5%;
+  transform: translate(-50%, -50%);
+  font-family: "Rajdhani", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #2d81ff;
+  background-color: transparent;
+  opacity: 0.7;
+}
+
+.create_account:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.sign_in_with_google {
+  position: absolute;
+  top: 82%;
+  transform: translate(-50%, -50%);
+  font-family: "Rajdhani", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: transparent;
+  opacity: 0.8;
+  width: 290px;
+  height: 33px;
+  left: 51%;
+  cursor: pointer;
+  background-color: #EEF5FC;
+  border: 1px solid #bbbaba;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 32px;
+  padding: 0px 0px 0px 16px;
+}
+
+.google_logo {
+  position: absolute;
+  top: 77%;
+  left: 15%;
+  z-index: 1;
+  transform: translate(50%, 50%);
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+}
+
+.sign_in_with_google:hover {
+  box-shadow: 0px 0px 10px 0px #bcd9f7;
   transition: 0.2s;
 }

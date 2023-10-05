@@ -2,6 +2,8 @@ import LandingPage from "./pages/LandingPage";
 import Description from "./pages/Description";
 import About from "./pages/About";
 import Signin from "./pages/Signin";
+import Register from "./pages/Register";
+import Signin2 from "./pages/Signin2";
 
 function App() {
   return (
@@ -10,7 +12,9 @@ function App() {
         {/* <LandingPage /> */}
         {/* <Description /> */}
         {/* <About /> */}
-        <Signin />
+        {/* <Signin /> */}
+        {/* <Register /> */}
+        <Signin2 />
       </header>
     </div>
   );
