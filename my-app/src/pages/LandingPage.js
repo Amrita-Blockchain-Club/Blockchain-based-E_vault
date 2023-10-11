@@ -4,7 +4,7 @@ import "./LandingPage.css";
 import metamask from "../assets/Untitled_design__9__1-removebg-preview.png";
 import blockdiagram from "../assets/original-4cfe1ccf4ff167f1e18b27afe33c1f5d 1.png";
 import moonpic from "../assets/moon (1) 2.png";
-
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -13,8 +13,12 @@ const LandingPage = () => {
         <img className="icon" alt="icon" src={icon}></img>
         <div className="heading">TrustVault</div>
         <div className="aboutbox">
-          <div className="about">About</div>
-        </div>
+        <Link to="/about" >
+          <div className="about">
+          About
+          </div>
+          </Link>
+        </div> 
         <div className="colourmode">
           <img src={moonpic} alt="moon" className="moon"></img>
         </div>
@@ -30,7 +34,8 @@ const LandingPage = () => {
           Easy and Secure access to your Document
         </div>
         <img src={blockdiagram} alt="blockdiagram" className="blockdiagram" />
-        <button className="learnmore">Learn More</button>
+        <Link to="/description">
+        <button className="learnmore">Learn More</button></Link>
         <div className="subheading">
           Services We <br />
           Provide
