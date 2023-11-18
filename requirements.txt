@@ -1,5 +1,5 @@
 asyncio
 pymongo
 python-dotenv
-time
-flask
+flask[async]
+tqdm
