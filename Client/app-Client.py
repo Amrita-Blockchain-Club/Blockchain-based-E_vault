@@ -17,8 +17,8 @@ def get_response(response):
 
 def to_server():
     url = 'http://localhost:5100'
-    public_key = '0x59a0Ee7fDc4Eb1A941ff8c3c6bcdF69446398D38'
-    filename = './GOFile_2.go'
+    public_key = '__Public Key__'
+    filename = '__File Name__'
 
     with open(filename, 'rb') as file:
         response = requests.post(url, data={'public_key': public_key}, files={'file': file})
